@@ -1,33 +1,34 @@
 import Link from 'next/link'
+import LogoutButton from '@/components/layout/LogoutButton'
 
 export default function Sidebar() {
   return (
-    <aside className="w-64 bg-black text-white min-h-screen p-4">
-      <h2 className="text-2xl font-bold mb-8">
-        Auvit
-      </h2>
+    <aside className="w-64 bg-black text-white min-h-screen p-4 flex flex-col">
+      <h2 className="text-2xl font-bold mb-8">Auvit</h2>
 
-      <nav className="flex flex-col gap-4">
-        <Link href="/dashboard">
+      <nav className="flex flex-col gap-4 flex-1">
+        <Link href="/dashboard" className="hover:text-gray-300">
           Dashboard
         </Link>
 
-        <Link href="/tickets">
+        <Link href="/tickets" className="hover:text-gray-300">
           Tickets
         </Link>
 
-        <Link href="/clientes">
+        <Link href="/clientes" className="hover:text-gray-300">
           Clientes
         </Link>
 
-        <Link href="/agenda">
+        <Link href="/agenda" className="hover:text-gray-300">
           Agenda
         </Link>
 
-        <Link href="/usuarios">
+        <Link href="/usuarios" className="hover:text-gray-300">
           Usuarios
         </Link>
       </nav>
+
+      <LogoutButton />
     </aside>
   )
 }
