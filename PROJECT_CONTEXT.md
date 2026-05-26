@@ -185,10 +185,13 @@ DB enum: `admin`, `receptionist`, `technician`, `operations` — see `supabase/m
 - client_id
 - assigned_to
 - priority
-- status
+- status (`open`, `assigned`, `in_progress`, `resolved`, `closed`, `cancelled`)
 - reported_issue
 - possible_solution
 - created_at
+- updated_at
+
+**Flujo de estados:** Resuelto = trabajo terminado, puede no estar pagado. Cerrado = pagado/cerrado administrativamente.
 
 ## ticket_history
 - id
@@ -259,12 +262,11 @@ git push
 - Login page UI
 - Auth: login redirect, session cookies, middleware protected routes, logout
 - Roles: `users` table, RLS, route/menu permissions, admin bootstrap SQL
+- Clients CRUD + Tickets CRUD + ticket history (SQL `003_clients_and_tickets.sql`)
 
 ## Next Steps
 - Admin UI to create users (Supabase Auth + profile)
-- Ticket CRUD
-- Client CRUD
-- Dashboard metrics
+- Dashboard metrics (real data from tickets)
 
 ---
 

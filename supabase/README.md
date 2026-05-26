@@ -28,6 +28,12 @@ FROM auth.users
 WHERE email = 'nuevo@ejemplo.com';
 ```
 
+### Etapa 3 — Clients & tickets
+
+Run `migrations/003_clients_and_tickets.sql` in SQL Editor.
+
+Ticket statuses: `open`, `assigned`, `in_progress`, `resolved`, `closed`, `cancelled`.
+
 ### Adding a new role later
 
 1. `ALTER TYPE public.user_role ADD VALUE 'new_role';`
