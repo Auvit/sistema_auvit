@@ -100,6 +100,18 @@ src/
 - Schedule management
 - Monitoring technicians
 
+## Route permissions (implemented)
+
+| Route | admin | receptionist | technician | operations |
+|-------|:-----:|:------------:|:----------:|:----------:|
+| /dashboard | yes | yes | yes | yes |
+| /tickets | yes | yes | yes | yes |
+| /clientes | yes | yes | no | yes |
+| /agenda | yes | yes | yes | yes |
+| /usuarios | yes | no | no | no |
+
+DB enum: `admin`, `receptionist`, `technician`, `operations` — see `supabase/migrations/001_users_and_roles.sql`
+
 ---
 
 # Main Modules
@@ -246,9 +258,10 @@ git push
 - shadcn/ui setup
 - Login page UI
 - Auth: login redirect, session cookies, middleware protected routes, logout
+- Roles: `users` table, RLS, route/menu permissions, admin bootstrap SQL
 
 ## Next Steps
-- Role system
+- Admin UI to create users (Supabase Auth + profile)
 - Ticket CRUD
 - Client CRUD
 - Dashboard metrics

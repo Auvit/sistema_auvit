@@ -1,18 +1,13 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
-
-const PROTECTED_PREFIXES = [
-  '/dashboard',
-  '/tickets',
-  '/clientes',
-  '/agenda',
-  '/usuarios',
-]
+import {
+  canAccessRoute,
+  pathnameToAppRoute,
+} from '@/lib/permissions'
+import { getUserProfile } from '@/services/users'
 
 function isProtectedRoute(pathname: string) {
-  return PROTECTED_PREFIXES.some(
-    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
-  )
+  return pathnameToAppRoute(pathname) !== null
 }
 
 export async function updateSession(request: NextRequest) {
@@ -45,6 +40,8 @@ export async function updateSession(request: NextRequest) {
 
   const { pathname } = request.nextUrl
 
+  const profile = user ? await getUserProfile(supabase, user.id) : null
+
   if (!user && isProtectedRoute(pathname)) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
@@ -53,13 +50,46 @@ export async function updateSession(request: NextRequest) {
 
   if (user && pathname === '/login') {
     const url = request.nextUrl.clone()
-    url.pathname = '/dashboard'
+    url.pathname = profile ? '/dashboard' : '/unauthorized'
+    if (!profile) url.searchParams.set('reason', 'no_profile')
     return NextResponse.redirect(url)
   }
 
   if (pathname === '/') {
     const url = request.nextUrl.clone()
-    url.pathname = user ? '/dashboard' : '/login'
+    if (!user) {
+      url.pathname = '/login'
+    } else if (!profile) {
+      url.pathname = '/unauthorized'
+      url.searchParams.set('reason', 'no_profile')
+    } else {
+      url.pathname = '/dashboard'
+    }
+    return NextResponse.redirect(url)
+  }
+
+  if (pathname === '/unauthorized') {
+    return supabaseResponse
+  }
+
+  if (user && isProtectedRoute(pathname)) {
+    if (!profile) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/unauthorized'
+      url.searchParams.set('reason', 'no_profile')
+      return NextResponse.redirect(url)
+    }
+
+    if (!canAccessRoute(profile.role, pathname)) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/unauthorized'
+      return NextResponse.redirect(url)
+    }
+  }
+
+  if (!user && pathname === '/unauthorized') {
+    const url = request.nextUrl.clone()
+    url.pathname = '/login'
     return NextResponse.redirect(url)
   }
 

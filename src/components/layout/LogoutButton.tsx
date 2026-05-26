@@ -2,8 +2,17 @@
 
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { cn } from '@/lib/utils'
 
-export default function LogoutButton() {
+type LogoutButtonProps = {
+  className?: string
+  label?: string
+}
+
+export default function LogoutButton({
+  className,
+  label = 'Sign Out',
+}: LogoutButtonProps) {
   const router = useRouter()
   const supabase = createClient()
 
@@ -17,9 +26,12 @@ export default function LogoutButton() {
     <button
       type="button"
       onClick={handleLogout}
-      className="mt-auto pt-6 text-left text-gray-400 hover:text-white transition-colors"
+      className={cn(
+        'mt-auto pt-6 text-left text-gray-400 hover:text-white transition-colors',
+        className
+      )}
     >
-      Sign Out
+      {label}
     </button>
   )
 }
