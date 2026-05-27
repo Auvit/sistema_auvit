@@ -20,3 +20,9 @@ export async function requireProfile(): Promise<{
 
   return { supabase, user, profile }
 }
+
+export async function requireAdmin() {
+  const auth = await requireProfile()
+  if (auth.profile.role !== 'admin') redirect('/unauthorized')
+  return auth
+}

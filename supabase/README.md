@@ -12,21 +12,16 @@
 
 If the user exists in `users` as admin but the app cannot load the profile, run `002_fix_rls_recursion.sql`. The original admin RLS policies caused infinite recursion on SELECT.
 
-### Adding users (option 1 — admin only)
+### Etapa 4 — Users UI
 
-Until the `/usuarios` UI is built:
+Run `migrations/004_users_admin_upsert_by_email.sql`.
 
-1. Create the user in **Authentication → Users** (invite or add).
-2. As admin, insert a row in `public.users` with the same `id` as `auth.users` and the desired `role`.
+Then the app supports:
 
-Or use SQL (replace values):
+- `/usuarios/nuevo`: assign role/profile by email (admin only)
+- `/usuarios/[id]`: edit role, name, phone or delete profile
 
-```sql
-INSERT INTO public.users (id, email, name, role)
-SELECT id, email, 'Nombre Apellido', 'receptionist'::public.user_role
-FROM auth.users
-WHERE email = 'nuevo@ejemplo.com';
-```
+Note: email/account creation still starts in **Authentication → Users**.
 
 ### Etapa 3 — Clients & tickets
 

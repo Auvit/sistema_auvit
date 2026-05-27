@@ -263,10 +263,12 @@ git push
 - Auth: login redirect, session cookies, middleware protected routes, logout
 - Roles: `users` table, RLS, route/menu permissions, admin bootstrap SQL
 - Clients CRUD + Tickets CRUD + ticket history (SQL `003_clients_and_tickets.sql`)
+- Users module UI (admin): create profile by email, edit role/name/phone, delete profile (`004_users_admin_upsert_by_email.sql`)
+- Dashboard metrics (real data from tickets, role-aware technician view)
 
 ## Next Steps
-- Admin UI to create users (Supabase Auth + profile)
-- Dashboard metrics (real data from tickets)
+- Create Auth users directly from admin UI (Supabase Admin API)
+- Agenda module
 
 ---
 
