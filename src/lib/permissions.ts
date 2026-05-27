@@ -44,6 +44,11 @@ export function pathnameToAppRoute(pathname: string): AppRoute | null {
   return null
 }
 
+/** Rutas hijas bajo módulos protegidos (ej. /agenda/uuid, /tickets/uuid) */
+export function isProtectedAppPath(pathname: string) {
+  return pathnameToAppRoute(pathname) !== null
+}
+
 export function canAccessRoute(role: UserRole, pathname: string): boolean {
   const appRoute = pathnameToAppRoute(pathname)
   if (!appRoute) return true

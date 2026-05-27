@@ -29,6 +29,19 @@ Run `migrations/003_clients_and_tickets.sql` in SQL Editor.
 
 Ticket statuses: `open`, `assigned`, `in_progress`, `resolved`, `closed`, `cancelled`.
 
+### Etapa 5 — Agenda semanal
+
+Run `migrations/005_weekly_agenda.sql` in SQL Editor.
+
+Rules:
+- A ticket can have multiple appointments.
+- Admin/reception/operations can create, move, edit and delete appointments.
+- Technicians only view their own appointments.
+
+### Etapa 5b — Fix agenda visibility
+
+Run `migrations/006_users_select_staff.sql` if appointments save but do not appear in the weekly view.
+
 ### Adding a new role later
 
 1. `ALTER TYPE public.user_role ADD VALUE 'new_role';`

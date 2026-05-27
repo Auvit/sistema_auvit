@@ -205,8 +205,12 @@ DB enum: `admin`, `receptionist`, `technician`, `operations` — see `supabase/m
 - id
 - technician_id
 - ticket_id
-- scheduled_date
-- status
+- scheduled_start
+- scheduled_end
+- status (`scheduled`, `completed`, `cancelled`)
+- notes
+- created_by
+- created_at
 
 ---
 
@@ -265,10 +269,11 @@ git push
 - Clients CRUD + Tickets CRUD + ticket history (SQL `003_clients_and_tickets.sql`)
 - Users module UI (admin): create profile by email, edit role/name/phone, delete profile (`004_users_admin_upsert_by_email.sql`)
 - Dashboard metrics (real data from tickets, role-aware technician view)
+- Weekly agenda module with multiple appointments per ticket (`005_weekly_agenda.sql`)
 
 ## Next Steps
 - Create Auth users directly from admin UI (Supabase Admin API)
-- Agenda module
+- Reports module
 
 ---
 

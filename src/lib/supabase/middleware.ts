@@ -2,12 +2,12 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 import {
   canAccessRoute,
-  pathnameToAppRoute,
+  isProtectedAppPath,
 } from '@/lib/permissions'
 import { getUserProfile } from '@/services/users'
 
 function isProtectedRoute(pathname: string) {
-  return pathnameToAppRoute(pathname) !== null
+  return isProtectedAppPath(pathname)
 }
 
 export async function updateSession(request: NextRequest) {

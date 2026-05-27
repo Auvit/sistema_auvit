@@ -27,6 +27,10 @@ export function canDeleteClient(role: UserRole) {
   return role === 'admin'
 }
 
+export function canManageAgenda(role: UserRole) {
+  return TICKET_MANAGER_ROLES.includes(role)
+}
+
 export function canTechnicianWorkTicket(
   role: UserRole,
   ticket: Pick<Ticket, 'assigned_to' | 'status'>,
