@@ -270,10 +270,13 @@ git push
 - Users module UI (admin): create profile by email, edit role/name/phone, delete profile (`004_users_admin_upsert_by_email.sql`)
 - Dashboard metrics (real data from tickets, role-aware technician view)
 - Weekly agenda module with multiple appointments per ticket (`005_weekly_agenda.sql`)
+- Create Auth users from admin UI (`SUPABASE_SERVICE_ROLE_KEY` + `/usuarios/nuevo`)
+- Basic reports (`/reportes`): by status, priority, technician, resolved vs closed
+- Service order print flow (`/tickets/[id]/orden`) — functional layout; branding/logo later
 
 ## Next Steps
-- Create Auth users directly from admin UI (Supabase Admin API)
-- Reports module
+- UI refresh (modern SaaS look)
+- Service order: logo, membrete, formato tipo Excel
 
 ---
 

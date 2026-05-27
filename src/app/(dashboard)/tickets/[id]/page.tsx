@@ -71,6 +71,14 @@ export default async function TicketDetallePage({
           Cliente: <span className="font-medium text-gray-800">{ticket.client?.name}</span>
           {ticket.client?.phone && ` · ${ticket.client.phone}`}
         </p>
+        <Link
+          href={`/tickets/${id}/orden`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cn(buttonVariants({ variant: 'outline' }), 'inline-flex mt-4')}
+        >
+          Imprimir orden de servicio
+        </Link>
       </div>
 
       <Card>

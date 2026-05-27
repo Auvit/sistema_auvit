@@ -21,7 +21,13 @@ Then the app supports:
 - `/usuarios/nuevo`: assign role/profile by email (admin only)
 - `/usuarios/[id]`: edit role, name, phone or delete profile
 
-Note: email/account creation still starts in **Authentication → Users**.
+### Crear usuarios desde la app (admin)
+
+1. Add `SUPABASE_SERVICE_ROLE_KEY` to `.env.local` (see `.env.example`).
+2. Restart `npm run dev`.
+3. As admin: `/usuarios/nuevo` — email, password, role, name.
+
+Creates Auth user + `public.users` profile in one step.
 
 ### Etapa 3 — Clients & tickets
 

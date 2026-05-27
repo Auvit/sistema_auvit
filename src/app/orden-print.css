@@ -1,0 +1,43 @@
+/* Vista e impresión de orden de servicio (sin sidebar) */
+.orden-servicio-view {
+  margin-left: -16rem;
+  width: calc(100% + 16rem);
+}
+
+@media (max-width: 1023px) {
+  .orden-servicio-view {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  aside {
+    display: none !important;
+  }
+
+  .orden-servicio-view {
+    margin-left: 0 !important;
+    width: 100% !important;
+    background: white !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+
+  .service-order {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+}

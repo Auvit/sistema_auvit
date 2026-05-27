@@ -14,6 +14,7 @@ export type AppRoute =
   | '/tickets'
   | '/clientes'
   | '/agenda'
+  | '/reportes'
   | '/usuarios'
 
 /** Add routes and roles here when extending the platform. */
@@ -22,6 +23,7 @@ export const ROUTE_PERMISSIONS: Record<AppRoute, readonly UserRole[]> = {
   '/tickets': USER_ROLES,
   '/clientes': ['admin', 'receptionist', 'operations'],
   '/agenda': USER_ROLES,
+  '/reportes': ['admin', 'receptionist', 'operations', 'technician'],
   '/usuarios': ['admin'],
 }
 
@@ -30,6 +32,7 @@ export const NAV_ITEMS: { href: AppRoute; label: string }[] = [
   { href: '/tickets', label: 'Tickets' },
   { href: '/clientes', label: 'Clientes' },
   { href: '/agenda', label: 'Agenda' },
+  { href: '/reportes', label: 'Reportes' },
   { href: '/usuarios', label: 'Usuarios' },
 ]
 

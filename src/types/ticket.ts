@@ -31,7 +31,13 @@ export type Ticket = {
 }
 
 export type TicketWithRelations = Ticket & {
-  client: { id: string; name: string; phone: string | null }
+  client: {
+    id: string
+    name: string
+    phone: string | null
+    email?: string | null
+    address?: string | null
+  }
   assignee: { id: string; name: string | null; email: string } | null
 }
 
